@@ -18,3 +18,9 @@
 - Courses empty: ensure `assets/data/courses.json` exists and valid JSON
 - Hero backgrounds not loading: confirm `data-bg` URLs and HTTPS
 - Service worker not registering: confirm HTTPS and file path `/assets/js/sw.js`
+
+## Video Embeds
+- Use YouTube embed URLs in the form `https://www.youtube-nocookie.com/embed/<id>?rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=<origin>`
+- Ensure iframes include `loading="lazy"`, `referrerpolicy="strict-origin-when-cross-origin"`, `allowfullscreen`, and `allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"`
+- Include `assets/js/main.js` on pages with video content to normalize embeds and handle errors
+- Avoid overlay elements that block clicks; overlays should not intercept pointer events

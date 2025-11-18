@@ -3,6 +3,8 @@ self.addEventListener('install',event=>{
   const base = (self.location.hostname.endsWith('github.io') && segs.length>0) ? ('/' + segs[0]) : '';
   event.waitUntil(caches.open('mindora-v1').then(cache=>cache.addAll([
     base + '/assets/css/app.min.css',
+    base + '/assets/css/color.css',
+    base + '/assets/css/dark.css',
     base + '/assets/js/app.min.js',
     base + '/components/header.html',
     base + '/components/footer.html',

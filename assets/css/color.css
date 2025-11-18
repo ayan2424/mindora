@@ -8,7 +8,7 @@
   --color-success: #16A34A;
   --color-danger: #DC2626;
   --accent-start: #ff1b6b;
-  --accent-end: #45caff;
+  --accent-end: #735DA5;
   --bs-primary: var(--color-primary);
   --bs-secondary: var(--color-secondary);
   --bs-success: var(--color-success);
@@ -16,3 +16,4 @@
   --bs-link-color: var(--color-primary);
   --bs-link-hover-color: #1E3A8A;
 }
+.theme-toggle-btn{display:grid!important}

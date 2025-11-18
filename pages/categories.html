@@ -14,7 +14,7 @@
   <body>
     <div class="container my-3">
       <div id="header"></div>
-      <section class="bg-body border rounded-4 shadow p-4 glass mb-4">
+      <section class="border rounded-4 shadow p-4 glass mb-4">
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
           <div>
             <h1 class="h4 mb-1">Browse by Category</h1>
@@ -38,7 +38,7 @@
           var html = cats.map(function(c){
             var group = posts.filter(function(p){ return (p.categories && p.categories.indexOf(c)>-1) || p.category===c; });
             var grid = group.map(function(p){ return '<div class="col-12 col-md-6 col-lg-4"><div class="card h-100 glass"><img class="card-img-top" src="'+(p.image||'https://picsum.photos/seed/default/600/400')+'" alt="'+(p.title||'')+'"><div class="card-body"><span class="badge '+(p.category?('text-bg-'+(p.category==='Meditation'?'success':p.category==='Breathing'?'warning':p.category==='Poses'?'secondary':p.category==='Nutrition'?'info':p.category==='Health'?'danger':'primary')):'text-bg-primary')+' mb-2">'+(p.category||c)+'</span><h3 class="h6"><a class="text-decoration-none" href="'+p.url+'">'+p.title+'</a></h3><p class="text-muted mb-0">'+(p.excerpt||'')+'</p></div></div></div>'; }).join('');
-            return '<section id="cat_'+c.replace(/\s+/g,'_')+'" class="mb-4"><div class="bg-body border rounded-4 shadow p-4 glass"><div class="d-flex align-items-center justify-content-between mb-3"><h2 class="h5 mb-0">'+c+'</h2><a href="#" class="btn btn-outline-secondary rounded-pill" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;">Top</a></div><div class="row g-4">'+grid+'</div></div></section>';
+            return '<section id="cat_'+c.replace(/\s+/g,'_')+'" class="mb-4"><div class="border rounded-4 shadow p-4 glass"><div class="d-flex align-items-center justify-content-between mb-3"><h2 class="h5 mb-0">'+c+'</h2><a href="#" class="btn btn-outline-secondary rounded-pill" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;">Top</a></div><div class="row g-4">'+grid+'</div></div></section>';
           }).join('');
           $('#categorySections').html(html);
         });

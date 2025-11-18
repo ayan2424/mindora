@@ -88,3 +88,33 @@
     init: initComponents
   };
 })(window);
+;(function(){
+  var modalId = 'authModal';
+  function ensureModal(){
+    if (document.getElementById(modalId)) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'modal fade';
+    wrap.id = modalId;
+    wrap.setAttribute('tabindex','-1');
+    wrap.innerHTML = '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Account</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body" id="authModalBody"></div></div></div>';
+    document.body.appendChild(wrap);
+  }
+  function openView(view){
+    ensureModal();
+    var body = document.getElementById('authModalBody');
+    body.innerHTML = '';
+    var segs = window.location.pathname.split('/').filter(Boolean);
+    var base = (window.location.hostname.endsWith('github.io') && segs.length>0) ? ('/' + segs[0]) : '';
+    var url = base + '/components/' + (view==='signup'?'signup':'login') + '.html';
+    fetch(url).then(function(r){ return r.text(); }).then(function(html){ body.innerHTML = html; var modal = new bootstrap.Modal(document.getElementById(modalId)); modal.show(); });
+  }
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-open]');
+    if (!t) return;
+    var v = t.getAttribute('data-open');
+    if (v==='login' || v==='signup'){
+      e.preventDefault();
+      openView(v);
+    }
+  });
+})();
