@@ -30,28 +30,42 @@
   function loadHeader(target) {
     var $el = $(target);
     return new Promise(function (resolve, reject) {
-      $el.load('../components/header.html', function (responseText, status, xhr) {
-        if (status === 'error') {
-          reject(xhr);
-        } else {
-          resolve($el);
-        }
-      });
+      var segs = global.location.pathname.split('/').filter(Boolean);
+      var ghPrefix = segs.length ? ('/' + segs[0] + '/components/header.html') : '/components/header.html';
+      var candidates = ['../components/header.html', 'components/header.html', '/components/header.html', ghPrefix];
+      var i = 0;
+      (function tryNext() {
+        var url = candidates[i++];
+        $el.load(url, function (responseText, status, xhr) {
+          if (status === 'error') {
+            if (i < candidates.length) tryNext(); else reject(xhr);
+          } else {
+            resolve($el);
+          }
+        });
+      })();
     });
   }
 
   function loadFooter(target) {
     var $el = $(target);
     return new Promise(function (resolve, reject) {
-      $el.load('../components/footer.html', function (responseText, status, xhr) {
-        if (status === 'error') {
-          reject(xhr);
-        } else {
-          var $year = $('#year');
-          if ($year.length) $year.text(new Date().getFullYear());
-          resolve($el);
-        }
-      });
+      var segs = global.location.pathname.split('/').filter(Boolean);
+      var ghPrefix = segs.length ? ('/' + segs[0] + '/components/footer.html') : '/components/footer.html';
+      var candidates = ['../components/footer.html', 'components/footer.html', '/components/footer.html', ghPrefix];
+      var i = 0;
+      (function tryNext() {
+        var url = candidates[i++];
+        $el.load(url, function (responseText, status, xhr) {
+          if (status === 'error') {
+            if (i < candidates.length) tryNext(); else reject(xhr);
+          } else {
+            var $year = $('#year');
+            if ($year.length) $year.text(new Date().getFullYear());
+            resolve($el);
+          }
+        });
+      })();
     });
   }
 
