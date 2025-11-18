@@ -30,7 +30,7 @@
   function loadHeader(target) {
     var $el = $(target);
     return new Promise(function (resolve, reject) {
-      $el.load('/components/header.html', function (responseText, status, xhr) {
+      $el.load('../components/header.html', function (responseText, status, xhr) {
         if (status === 'error') {
           reject(xhr);
         } else {
@@ -43,7 +43,7 @@
   function loadFooter(target) {
     var $el = $(target);
     return new Promise(function (resolve, reject) {
-      $el.load('/components/footer.html', function (responseText, status, xhr) {
+      $el.load('../components/footer.html', function (responseText, status, xhr) {
         if (status === 'error') {
           reject(xhr);
         } else {
