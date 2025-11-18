@@ -1,9 +1,10 @@
 ;(function(global){
   var LS_KEY = 'mindora:courses';
+  var base = (function(){ var segs = global.location.pathname.split('/').filter(Boolean); return (global.location.hostname.endsWith('github.io') && segs.length>0) ? ('/' + segs[0]) : ''; })();
   function read(){ try{ return JSON.parse(localStorage.getItem(LS_KEY)||'[]'); }catch(e){ return []; } }
   function write(v){ try{ localStorage.setItem(LS_KEY, JSON.stringify(v||[])); }catch(e){} }
   function merge(base){ var local = read(); var map = {}; base.forEach(function(c){ map[c.id]=c; }); local.forEach(function(c){ map[c.id]=c; }); return Object.keys(map).map(function(k){ return map[k]; }); }
-  function list(){ return fetch('/assets/data/courses.json').then(function(r){ return r.json(); }).then(function(base){ return merge(base); }).catch(function(){ return merge([]); }); }
+  function list(){ return fetch(base + '/assets/data/courses.json').then(function(r){ return r.json(); }).then(function(base){ return merge(base); }).catch(function(){ return merge([]); }); }
   function create(course){ var cur = read(); cur.push(course); write(cur); return Promise.resolve(course); }
   function update(course){ var cur = read(); var idx = cur.findIndex(function(c){ return c.id===course.id; }); if (idx>-1) cur[idx]=course; else cur.push(course); write(cur); return Promise.resolve(course); }
   function remove(id){ var cur = read().filter(function(c){ return c.id!==id; }); write(cur); return Promise.resolve(true); }

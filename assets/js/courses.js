@@ -1,5 +1,6 @@
 ;(function(global){
   var root = global.document;
+  var base = (function(){ var segs = global.location.pathname.split('/').filter(Boolean); return (global.location.hostname.endsWith('github.io') && segs.length>0) ? ('/' + segs[0]) : ''; })();
   function percent(a,b){ return Math.round((Math.max(0,a)/Math.max(1,b))*100); }
   function srcsetFor(img){ var m = (img||'').match(/picsum\.photos\/seed\/[^/]+\/(\d+)\/(\d+)/); if (m){ var w = parseInt(m[1],10), h = parseInt(m[2],10); var twoX = img.replace(/\/\d+\/\d+$/, '/' + (w*2) + '/' + (h*2)); return img + ' 1x, ' + twoX + ' 2x'; } return ''; }
   function renderCard(c, prog){
@@ -15,7 +16,7 @@
   function init(gridSel, filterSel){
     var grid = root.querySelector(gridSel);
     var filters = root.querySelector(filterSel);
-    fetch('/assets/data/courses.json').then(function(r){ return r.json(); }).then(function(courses){
+    fetch(base + '/assets/data/courses.json').then(function(r){ return r.json(); }).then(function(courses){
       var html = courses.map(function(c){ return '<div class="col-12 col-md-6 col-lg-4">'+renderCard(c)+'</div>'; }).join('');
       grid.innerHTML = html;
       var cats = {};

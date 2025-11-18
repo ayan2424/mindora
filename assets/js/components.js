@@ -78,7 +78,7 @@
         $('#footer').html('<div class="alert alert-warning rounded-4">Footer failed to load.</div>');
       })
     ]);
-    p.then(function(){ if (!window.Accounts) { var s = document.createElement('script'); s.src = '/assets/js/accounts.js'; s.async = true; document.body.appendChild(s); } });
+    p.then(function(){ if (!window.Accounts) { var s = document.createElement('script'); var segs = window.location.pathname.split('/').filter(Boolean), base = (window.location.hostname.endsWith('github.io') && segs.length>0) ? ('/' + segs[0]) : ''; s.src = base + '/assets/js/accounts.js'; s.async = true; document.body.appendChild(s); } });
     return p;
   }
 

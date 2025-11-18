@@ -57,13 +57,15 @@
   }
 
   (function(){
+    var segs = window.location.pathname.split('/').filter(Boolean);
+    var base = (window.location.hostname.endsWith('github.io') && segs.length>0) ? ('/' + segs[0]) : '';
     var our = document.getElementById('ourBlogsRow');
     if (!our) return;
     function fallback(){
       var items = [
-        { title: 'Getting Started: Aerobics & Breath', category: 'Aerobics', excerpt: 'Gentle rhythm and paced breathing for beginners.', url: '/pages/blog.html#start', image: 'https://picsum.photos/seed/blog-fallback-1/800/400' },
-        { title: 'Meditation Before Cardio', category: 'Meditation', excerpt: 'Calm breath warm‑up improves pacing and enjoyment.', url: '/posts/Meditation/meditation-before-cardio.html', image: 'https://picsum.photos/seed/blog-fallback-2/800/400' },
-        { title: 'Nutrition for Training', category: 'Nutrition', excerpt: 'Fueling and hydration basics for comfortable sessions.', url: '/posts/Nutrition/nutrition-for-cardio-training.html', image: 'https://picsum.photos/seed/blog-fallback-3/800/400' }
+        { title: 'Getting Started: Aerobics & Breath', category: 'Aerobics', excerpt: 'Gentle rhythm and paced breathing for beginners.', url: base + '/pages/blog.html#start', image: 'https://picsum.photos/seed/blog-fallback-1/800/400' },
+        { title: 'Meditation Before Cardio', category: 'Meditation', excerpt: 'Calm breath warm‑up improves pacing and enjoyment.', url: base + '/posts/Meditation/meditation-before-cardio.html', image: 'https://picsum.photos/seed/blog-fallback-2/800/400' },
+        { title: 'Nutrition for Training', category: 'Nutrition', excerpt: 'Fueling and hydration basics for comfortable sessions.', url: base + '/posts/Nutrition/nutrition-for-cardio-training.html', image: 'https://picsum.photos/seed/blog-fallback-3/800/400' }
       ];
       var html = items.map(function(p){ var aria = p.title; return '<div class="col-12 col-md-6 col-lg-4"><a class="text-decoration-none" href="'+p.url+'"><div class="blog-card"><div class="blog-card-img" role="img" aria-label="'+aria+'" style="background-image:url('+p.image+')"></div><div class="blog-card-body"><span class="badge text-bg-primary mb-2">'+p.category+'</span><h3 class="h6 mb-1">'+p.title+'</h3><p class="text-muted mb-0">'+p.excerpt+'</p></div></div></a></div>'; }).join('');
       our.innerHTML = html;

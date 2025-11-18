@@ -48,7 +48,7 @@
     <script>
       $(function(){
         window.Components.init();
-        Courses.init('#courseGrid', '#courseFilters');
+        if (window.CourseStore) { } else if (window.Courses && typeof window.Courses.init==='function'){ window.Courses.init('#courseGrid', '#courseFilters'); }
         var $grid = $('#courseGrid');
         $('#courseSearch').on('input', function(){
           var term = ($(this).val()||'').toLowerCase();
