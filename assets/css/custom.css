@@ -47,8 +47,6 @@ header .navbar { border-radius: var(--radius-header); }
 .hero-copy { backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); }
 .hero-product { border-radius: var(--radius-standard); box-shadow: 0 20px 40px rgba(0,0,0,0.5); min-height: 320px; height: 60vh; background-image: radial-gradient(800px 400px at 20% 20%, rgba(124,58,237,.3), transparent 60%), radial-gradient(800px 400px at 80% 80%, rgba(34,211,238,.3), transparent 60%), linear-gradient(135deg, #111, #222); }
 .hero-pagination { position: absolute; left: 0; right: 0; bottom: 24px; display: flex; justify-content: center; gap: 10px; }
-.hero-pagination .swiper-pagination-bullet { width: 8px; height: 8px; border-radius: 999px; background-color: #444; opacity: 1; transition: width 300ms ease, height 300ms ease, background-color 300ms ease, box-shadow 300ms ease; }
-.hero-pagination .swiper-pagination-bullet-active { width: 24px; height: 8px; border-radius: 999px; background-image: linear-gradient(90deg, var(--accent-start), var(--accent-end)); box-shadow: 0 8px 20px rgba(0,0,0,0.35); }
 .social-link { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:999px; background:transparent; transition: transform .2s ease; }
 .social-link:hover { transform: translateY(-2px); }
 .page-hero { position: relative; overflow: hidden; min-height: 80vh; display: grid; align-items: center; }
