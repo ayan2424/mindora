@@ -1,22 +1,15 @@
 <footer class="container my-5">
-  <style>
-    .footer-card{position:relative;overflow:hidden}
-    .footer-card::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:220px;background:radial-gradient(600px 300px at 20% 20%, rgba(124,58,237,.18), transparent 60%), radial-gradient(600px 300px at 80% 80%, rgba(34,211,238,.18), transparent 60%);filter:blur(40px);pointer-events:none}
-    .footer-top{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start}
-    .footer-brand{flex:1 1 280px;min-width:240px}
-    .footer-links{display:flex;flex-wrap:wrap;gap:24px;flex:1 1 360px}
-    .footer-links .link-col{flex:1 1 160px;min-width:160px}
-    .footer-news{flex:1 1 320px;min-width:260px}
-    .footer-social{display:flex;flex-wrap:wrap;gap:8px}
-    .footer-bottom{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-    .footer-brand-title{display:inline-flex;align-items:center;gap:.5rem}
-  </style>
+  
   <div class="footer-card border rounded-4 shadow p-4 p-md-5 glass">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="./index.html" class="footer-brand-title navbar-brand mb-2">
-          <img width="140px" src="../assets/img/logo/logo.png" alt="Mindora"></a>
-        <p class="text-muted">Healthy mind through aerobics, breathing, and meditation.</p>
+        <a href="./index.html" class="footer-brand-title navbar-brand mb-2" aria-label="Mindora Home">
+          <img width="140px"
+  src="/assets/img/logo/logo.png"
+  onerror="this.onerror=null; this.src='../assets/img/logo/logo.png';"
+  alt="Mindora"/>
+        </a>
+        <p class="footer-tagline text-muted">Healthy mind through aerobics, breathing, and meditation.</p>
         <div class="footer-social">
           <a href="https://twitter.com" target="_blank" rel="noopener" class="btn btn-outline-secondary btn-sm rounded-circle" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
           <a href="https://instagram.com" target="_blank" rel="noopener" class="btn btn-outline-secondary btn-sm rounded-circle" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
