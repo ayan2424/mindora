@@ -16,3 +16,21 @@
   --bs-link-color: var(--color-primary);
   --bs-link-hover-color: #1E3A8A;
 }
+:root {
+  --text-color: #111827;
+  --muted-text-color: #6b7280;
+  --bg: #f8fafc;
+  --surface-bg: #ffffff;
+  --accent-start: #7c3aed;
+  --accent-end: #1d4ed8;
+  --glass-border-color: rgba(125,125,125,.25);
+}
+[data-bs-theme="dark"] {
+  --text-color: #e5e7eb;
+  --muted-text-color: #9ca3af;
+  --bg: #0b0f16;
+  --surface-bg: #0f172a;
+  --accent-start: #22d3ee;
+  --accent-end: #14b8a6;
+  --glass-border-color: rgba(255,255,255,.15);
+}

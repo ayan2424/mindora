@@ -4,6 +4,7 @@ self.addEventListener('install',event=>{
   event.waitUntil(caches.open('mindora-v1').then(cache=>cache.addAll([
     base + '/assets/css/style.css',
     base + '/assets/css/color.css',
+    base + '/assets/css/responsive.css',
     base + '/assets/css/dark.css',
     base + '/assets/js/app.min.js',
     base + '/components/header.html',
