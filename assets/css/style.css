@@ -852,6 +852,18 @@ a {
   outline: none;
 }
 
+img {
+  position: relative;
+}
+
+img::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgb(15, 23, 42);
+  z-index: 4;
+}
+
 .hero-copy {
   gap: 12px;
 }
