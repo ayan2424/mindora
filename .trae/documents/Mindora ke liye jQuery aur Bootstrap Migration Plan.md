@@ -11,7 +11,8 @@
 ## Conversion Strategy
 - Bootstrap + jQuery ko CDN se include karna (minified + SRI):
   - `<link>`: Bootstrap 5.3 CSS (head)
-  - `<script>`: jQuery 3.7 (before closing `</body>`), Bootstrap 5.3 JS (after jQuery)
+  - `<script>`: jQuery 3.7 (before closing `<script src="../assets/js/components.js"></script>
+</body>`), Bootstrap 5.3 JS (after jQuery)
 - JavaScript ko jQuery mein rewrite aur modularize:
   - Theme toggle: `$('#themeToggle').on('click', ...)` with `data-bs-theme` (Bootstrap 5.3 dark mode) + `localStorage`
   - Component injection: `$('#header').load('components/header.html')` and `$('#footer').load('components/footer.html')`

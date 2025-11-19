@@ -34,13 +34,13 @@
 }
 
 [data-bs-theme="light"] {
-  --bs-body-bg: var(--color-neutral-0);
-  --bs-body-color: var(--color-neutral-900);
-  --bs-border-color: #E5E7EB;
+  --bs-body-bg: var(--color-neutral-0) !important;
+  --bs-body-color: var(--color-neutral-900) !important;
+  --bs-border-color: #E5E7EB !important;
   --surface-bg: rgba(255, 255, 255, .85);
   --glass-bg: rgba(255, 255, 255, .65);
-  --glass-border-color: #E5E7EB;
-  --nav-hover-bg: #F1F5F9
+  --glass-border-color: #E5E7EB !important;
+  --nav-hover-bg: #F1F5F9 !important;
 }
 
 /* End of transferred rules */
