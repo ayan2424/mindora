@@ -575,6 +575,20 @@
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // Pre-init: avoid duplicate hero init and apply preferred theme
+    (function(){
+      try {
+        window.__skipHeroInit = true;
+        var k='mindora:theme', s=localStorage.getItem(k)||'';
+        var sys=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var init = s==='dark' ? 'dark' : (s==='light' ? 'light' : (sys ? 'dark' : 'light'));
+        document.documentElement.setAttribute('data-bs-theme', init);
+      } catch(e) {
+        document.documentElement.setAttribute('data-bs-theme','light');
+      }
+    })();
+  </script>
   <script src="./assets/js/app.min.js?v=1"></script>
   <script src="./assets/js/blog.js"></script>
   <script src="./assets/js/main.js"></script>
