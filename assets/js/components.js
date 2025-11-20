@@ -40,6 +40,11 @@
           if (status === 'error') {
             if (i < candidates.length) tryNext(); else reject(xhr);
           } else {
+            var base = (global.location.hostname.endsWith('github.io') && segs.length>0) ? ('/' + segs[0]) : '';
+            try {
+              $el.find('a[href^="/"]').each(function(){ var $a=$(this), h=$a.attr('href')||''; if (base && h.indexOf(base+'/')!==0) $a.attr('href', base + h); });
+              $el.find('img').each(function(){ var $i=$(this), s=$i.attr('src')||''; if (!s) return; var cleaned = s.replace(/`+$/,''); if (cleaned!==s){ s=cleaned; $i.attr('src', cleaned); } if (s.indexOf('/assets/')===0) { if (base && s.indexOf(base+'/')!==0) $i.attr('src', base + s); } else if (/^(\.\.|\.)\/assets\//.test(s)) { var fixed = s.replace(/^(\.\.|\.)\/assets\//, '/assets/'); $i.attr('src', base + fixed); } });
+            } catch(e) {}
             resolve($el);
           }
         });
@@ -60,6 +65,11 @@
           if (status === 'error') {
             if (i < candidates.length) tryNext(); else reject(xhr);
           } else {
+            var base = (global.location.hostname.endsWith('github.io') && segs.length>0) ? ('/' + segs[0]) : '';
+            try {
+              $el.find('a[href^="/"]').each(function(){ var $a=$(this), h=$a.attr('href')||''; if (base && h.indexOf(base+'/')!==0) $a.attr('href', base + h); });
+              $el.find('img').each(function(){ var $i=$(this), s=$i.attr('src')||''; if (!s) return; var cleaned = s.replace(/`+$/,''); if (cleaned!==s){ s=cleaned; $i.attr('src', cleaned); } if (s.indexOf('/assets/')===0) { if (base && s.indexOf(base+'/')!==0) $i.attr('src', base + s); } else if (/^(\.\.|\.)\/assets\//.test(s)) { var fixed = s.replace(/^(\.\.|\.)\/assets\//, '/assets/'); $i.attr('src', base + fixed); } });
+            } catch(e) {}
             var $year = $('#year');
             if ($year.length) $year.text(new Date().getFullYear());
             resolve($el);

@@ -24,6 +24,54 @@
   })();
 
   (function(){
+    var input = document.getElementById('poseSearch');
+    var btn = document.getElementById('poseSearchBtn');
+    if (!input || !btn) return;
+    var segs = window.location.pathname.split('/').filter(Boolean);
+    var base = (window.location.hostname.endsWith('github.io') && segs.length>0) ? ('/' + segs[0]) : '';
+    function go(){
+      var q = (input.value||'').toLowerCase();
+      var dest = '/pages/poses.html';
+      var anchor = '';
+      if (/low|march/.test(q)) anchor = '#poses-by-type';
+      else if (/step/.test(q)) anchor = '#poses-by-type';
+      else if (/high.*knee|high-knee|knee march/.test(q)) anchor = '#poses-by-type';
+      else if (/stress|relief/.test(q)) anchor = '#poses-by-benefit';
+      else if (/heart|cardio/.test(q)) anchor = '#poses-by-benefit';
+      else if (/arm|heel|reach/.test(q)) anchor = '#poses-general';
+      else if (/core|leg|back|anatomy|knee lift/.test(q)) anchor = '#poses-by-anatomy';
+      window.location.href = base + dest + (anchor||'');
+    }
+    btn.addEventListener('click', function(e){ e.preventDefault(); go(); });
+    input.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); go(); } });
+    var suggest = document.getElementById('poseSuggest');
+    if (!suggest) return;
+    var data = [
+      { label: 'Low-impact march', anchor: '#poses-by-type' },
+      { label: 'Step-touch', anchor: '#poses-by-type' },
+      { label: 'High-knee march', anchor: '#poses-by-type' },
+      { label: 'Stress relief flow', anchor: '#poses-by-benefit' },
+      { label: 'Heart-health intervals', anchor: '#poses-by-benefit' },
+      { label: 'Arm circles', anchor: '#poses-general' },
+      { label: 'Heel digs', anchor: '#poses-general' },
+      { label: 'Standing knee lifts', anchor: '#poses-by-anatomy' }
+    ];
+    function render(items){
+      var html = items.map(function(it){ var url = base + '/pages/poses.html' + it.anchor; return '<a class="item" href="'+url+'"><span>'+it.label+'</span><i class="bi bi-arrow-right"></i></a>'; }).join('');
+      suggest.innerHTML = html;
+    }
+    function update(){
+      var q = (input.value||'').trim().toLowerCase();
+      if (!q){ render(data.slice(0,6)); return; }
+      var items = data.filter(function(d){ return d.label.toLowerCase().indexOf(q)>=0; }).slice(0,6);
+      if (!items.length) items = data.slice(0,4);
+      render(items);
+    }
+    update();
+    input.addEventListener('input', update);
+  })();
+
+  (function(){
     var hero = document.getElementById('hero');
     function update(){
       var mobileWidth = window.matchMedia('(max-width: 767.98px)').matches;
@@ -72,9 +120,9 @@
     if (!our) return;
     function fallback(){
       var items = [
-        { title: 'Getting Started: Aerobics & Breath', category: 'Aerobics', excerpt: 'Gentle rhythm and paced breathing for beginners.', url: base + './pages/blog.html#start', image: '../assets/img/posts/1.jpeg' },
-        { title: 'Meditation Before Cardio', category: 'Meditation', excerpt: 'Calm breath warm‑up improves pacing and enjoyment.', url: base + './posts/Meditation/meditation-before-cardio.html', image: '../assets/img/posts/2.jpeg' },
-        { title: 'Nutrition for Training', category: 'Nutrition', excerpt: 'Fueling and hydration basics for comfortable sessions.', url: base + './posts/Nutrition/nutrition-for-cardio-training.html', image: '../assets/img/posts/3.jpeg' }
+        { title: 'Getting Started: Aerobics & Breath', category: 'Aerobics', excerpt: 'Gentle rhythm and paced breathing for beginners.', url: base + '/pages/blog.html#start', image: base + '/assets/img/posts/1.jpeg' },
+        { title: 'Meditation Before Cardio', category: 'Meditation', excerpt: 'Calm breath warm‑up improves pacing and enjoyment.', url: base + '/posts/Meditation/meditation-before-cardio.html', image: base + '/assets/img/posts/2.jpeg' },
+        { title: 'Nutrition for Training', category: 'Nutrition', excerpt: 'Fueling and hydration basics for comfortable sessions.', url: base + '/posts/Nutrition/nutrition-for-cardio-training.html', image: base + '/assets/img/posts/3.jpeg' }
       ];
       var html = items.map(function(p){ var aria = p.title; return '<div class="col-12 col-md-6 col-lg-4"><a class="text-decoration-none" href="'+p.url+'"><div class="blog-card"><div class="blog-card-img" role="img" aria-label="'+aria+'" style="background-image:url('+p.image+')"></div><div class="blog-card-body"><span class="badge text-bg-primary mb-2">'+p.category+'</span><h3 class="h6 mb-1">'+p.title+'</h3><p class="text-muted mb-0">'+p.excerpt+'</p></div></div></a></div>'; }).join('');
       our.innerHTML = html;
