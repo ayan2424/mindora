@@ -30,7 +30,7 @@
   --space-48: 48px;
   --space-64: 64px;
   --space-y: 24px;
-  --space-y-sm: 16px
+  --space-y-sm: 16px;
 }
 
 [data-bs-theme="light"] {
